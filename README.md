@@ -9,11 +9,7 @@ Samuel Arciniea, Joseph Barry, Ryan Brock, Dennis Walls
 ## Project Description/Outline:
 We will design an in-depth dashboard for investors to quickly visualize their portfolios. We will use plotly dash to create a user friendly dashbaord. The dashboard will incorporate interactive features, plots and financial models to assist in decision making. Each team member will use the dashboard to analyze their respective portfolio  and describe how the dashboard is a useful tool for each portfolio sector. 
 
-Sectors: 
-Crypto Currencies - Ryan
-FinTech's - Sam
-SAAS - Dennis
-Semi-Conductors - Joe
+Sectors: Crypto Currencies (Ryan), FinTech Companies (Sam), SAAS (Dennis), Semi-Conductors (Joe)
 
 ## Project Questions: 
 1. Which dashboard features are most useful for each sector selected?
