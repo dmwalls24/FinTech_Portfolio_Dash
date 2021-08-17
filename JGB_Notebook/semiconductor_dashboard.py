@@ -26,23 +26,60 @@ app.layout = html.Div([
     ])    
 ])
 
+@app.callback(Output('revenue', 'figure'),
+            [Input('company_selection', 'value')])
+def retrieve_revenue(company):
+    demo = 'ALPACA_API_KEY'
+    stock = company
+    print(stock)
+    IS = requests.get(f'https://financialmodelingprep.com/api/v3/financials/income-statement/{company}?apikey={demo}')
+    IS = IS.json()
+    IS = IS['financials']
+    Revenues = []
+    Dates = []
+    count = 0
+    for item in IS:
+        Revenues.append(float(IS[count]['Net Income']))
+        Dates.append(IS[count['date']])
+        count += 1
+    print(Revenues)
+
+    datapoints = {'data': [go.Bar(x=Dates, y=Revenues)],'layout': dict(xaxis={'title':'Date'},
+                                                                      yaxis={'title':'Revenue'},
+                                                                            )}
+    return datapoints
+
+@app.callback(Output('netincome','figure'),
+              [Input('company_selection','value')])
+def retrieve_revenue(company):
+  demo = 'your api key'
+  stock = company
+  IS = requests.get(f'https://financialmodelingprep.com/api/v3/financials/income-statement/{company}?apikey={demo}')
+  IS = IS.json()
+  IS = IS['financials']
+  Revenues = []
+  Dates = []
+  count = 0
+  for item in IS:
+    Revenues.append(float(IS[count]['Net Income']))
+    Dates.append(IS[count]['date'])
+    count += 1
+ 
+  datapoints = {'data': [go.Bar(x=Dates, y=Revenues,marker_color='lightsalmon',name='Net Income')],
+  'layout': dict(xaxis={'title':'Date'},
+                yaxis={'title':'Net Income'},
+                  )}
 
 
-@app.callback(Output('my-graph', 'figure'), [Input('my-dropdown', 'value')])
-def update_graph(selected_dropdown_value):
-    df = web.DataReader(
-        selected_dropdown_value,
-        'yahoo',
-        dt(2017, 1, 1), 
-        dt.now()
-    )   
-    return {
-        'data': [{
-            'x': df.index,
-            'y': df.Close
-        }], 
-        'layout': {'margin': {'l': 40, 'r': 0, 't': 20, 'b': 30}}
-    }   
+  return datapoints
+
+@app.callback(
+    Output(component_id='text', component_property='children'),
+    [Input(component_id='company_selection', component_property='value')]
+)
+def update_output_div(input_value):
+    return 'Displaying Data for "{}"'.format(input_value)
+
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(debug=True)
