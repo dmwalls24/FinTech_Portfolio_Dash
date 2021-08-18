@@ -1,30 +1,30 @@
 ## Code taken from https://gist.github.com/rpkyle/b69a4c70bb35b53c1902587a7c3e52dc
 
-!import dash
+import dash
 from dash.dependencies import Input, Output
 import dash_core_components as dcc 
 import dash_html_components as html
 
-!import requests
-!import plotly.graph_objects as go
+import requests
+import plotly.graph_objects as go
 
-!from pandas_datareader import data as web 
+from pandas_datareader import data as web 
 from datetime import datetime as dt
 
 app = dash.Dash()
 
 
 app.layout = html.Div([
-    html.H1('Semiconductor Dashboard'),
+  html.H1('Financial Dashboard'),
 
-    html.Div([
-    dcc.Input(id='company_selection', value=TSM),
-    html.H3(id='text'),
-    dcc.Graph(id='revenue'),
-    dcc.Graph(id='netincome'),
-    ],style={'padding':10}        
-    ])    
-])
+  html.Div([
+  dcc.Input(id='company_selection',value='AAPL'),
+  html.H3(id='text'),
+  dcc.Graph(id ='revenue'),
+  dcc.Graph(id ='netincome'),
+  ],style= {'padding':10})
+])  
+
 
 @app.callback(Output('revenue', 'figure'),
             [Input('company_selection', 'value')])
