@@ -1,3 +1,8 @@
+import pandas as pd
+from bs4 import BeautifulSoup
+import requests
+from datetime import date
+
 def get_financial_report(ticker):
 #build URLs
     urlfinancials = 'https://www.marketwatch.com/investing/stock/'+ticker+'/financials'

@@ -3,8 +3,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output, State
-import dash_table 
-from dash.exceptions import PreventUpdate
+import dash_table
 import flask
 from flask import Flask
 import pandas as pd
@@ -18,43 +17,6 @@ import sqlite3
 import plotly
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
-def ticker_inputs(inputID, pickerID, MONTH_CUTTOFF):
-    #calculate the current date
-    currentDate = date.today()
-    #calculate past date for the max allowed date
-    pastDate = currentDate - dateutil.relativedelta.relativedelta(months=MONTH_CUTTOFF)
-    
-    #return the layout components
-    return html.Div([
-            dcc.Input(id = inputID, type="text", placeholder="MSFT")
-            , html.P(" ")  
-            , dcc.DatePickerRange(
-            id = pickerID,
-            min_date_allowed=pastDate,
-            start_date = pastDate,
-            #end_date = currentDate
-            )])
-
-def make_card(alert_message, color, cardbody, style_dict = None):
-    
-    return  dbc.Card([  dbc.Alert(alert_message, color=color)
-        ,dbc.CardBody(cardbody)
-        ], style = style_dict)
-
-def make_item(button, cardbody, i):
-    # This function makes the accordion items 
-    return dbc.Card([
-        dbc.CardHeader(
-            html.H2(
-                dbc.Button(
-                    button,
-                    color="link",
-                    id=f"group-{i}-toggle"))),
-        dbc.Collapse(
-            dbc.CardBody(cardbody),
-            id=f"collapse-{i}")])
-
 def make_table(id, dataframe, lineHeight = '17px', page_size = 5):
     return   dash_table.DataTable(
         id=id,
@@ -71,7 +33,7 @@ def make_table(id, dataframe, lineHeight = '17px', page_size = 5):
                 'height': 'auto',
                 'lineHeight': lineHeight
             },
-        
+        # style_table = {'width':300},
         style_data_conditional=[
                 {
                     'if': {'row_index': 'odd'},
@@ -94,5 +56,41 @@ filter_action='custom',
         filter_query='',
 sort_action='custom',
         sort_mode='multi',
-        sort_by=[]
-        )#end table
+        sort_by=[],
+        #dataframe.to_dict('records')
+        )
+def make_card(alert_message, color, cardbody, style_dict = None):
+    return  dbc.Card([  dbc.Alert(alert_message, color=color)
+                        ,dbc.CardBody(cardbody)
+                    ], style = style_dict)#end card
+def ticker_inputs(inputID, pickerID, MONTH_CUTTOFF):
+    
+    currentDate = date.today() 
+    pastDate = currentDate - dateutil.relativedelta.relativedelta(months=MONTH_CUTTOFF)
+    
+    return html.Div([
+            dcc.Input(id = inputID, type="text", placeholder="MSFT")
+            , html.P(" ")  
+            , dcc.DatePickerRange(
+            id = pickerID,
+            min_date_allowed=pastDate,
+            #max_date_allowed=currentDate,
+            #initial_visible_month=dt(2017, 8, 5),
+            start_date = pastDate,
+            #end_date = currentDate
+            )])
+def make_item(button, cardbody, i):
+    # we use this function to make the example items to avoid code duplication
+    return dbc.Card([
+        dbc.CardHeader(
+            html.H2(
+                dbc.Button(
+                    button,
+                    color="link",
+                    id=f"group-{i}-toggle",
+                ))
+        ),
+        dbc.Collapse(
+            dbc.CardBody(cardbody),
+            id=f"collapse-{i}",
+        )])
