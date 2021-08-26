@@ -6,7 +6,9 @@ import yfinance as yf
 import numpy as np
 import praw
 import sqlite3
+
 from config import r_cid, r_csec, r_uag
+
 #return a dataframe for the newest reddit posts
 def get_reddit(cid= r_cid, csec= r_csec, uag= r_uag, subreddit='wallstreetbets'):
    
