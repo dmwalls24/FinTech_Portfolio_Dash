@@ -51,8 +51,8 @@ current_portfolio = {
     'CRM': 1,
     'MSFT': 1,
     'INTU': 1,
-    'IGV': 1,
-    'CLOU': 1
+    'WDAY': 1,
+    'ZEN': 1
 }
 
 
