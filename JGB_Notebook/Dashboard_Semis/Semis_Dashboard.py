@@ -30,7 +30,7 @@ external_stylesheets = [dbc.themes.BOOTSTRAP]
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
-app.title = 'SaaS Portfolio'
+app.title = 'SemiConductor Portfolio'
 
 debug_mode = False
 num_options = 5
@@ -38,7 +38,7 @@ num_options = 5
 header_card = html.Div(
     children=[
         html.P(children='📈💻', className='header-emoji'),
-        html.H1(children='SaaS Portfolio', className='header-title'),
+        html.H1(children='Semi Portfolio', className='header-title'),
         html.P(
             children='Optimize a given portfolio weightage using Sharpe Ratio',
             className='header-description'
@@ -48,11 +48,11 @@ header_card = html.Div(
 )
 
 current_portfolio = {
-    'CRM': 1,
-    'MSFT': 1,
-    'INTU': 2,
-    'IGV': 1,
-    'CLOU': 1
+    'AMD': 1,
+    'MU': 1,
+    'NVDA': 2,
+    'TSM': 1,
+    'AMAT': 1
 }
 
 
