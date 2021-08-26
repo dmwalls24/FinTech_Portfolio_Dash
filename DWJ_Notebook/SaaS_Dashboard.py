@@ -22,14 +22,14 @@ api_key = os.environ.get("access-key")
 cols = DEFAULT_PLOTLY_COLORS
 
 end_date_default = datetime.datetime.today().strftime('%Y-%m-%d')
-start_date_default = (datetime.datetime.today() - datetime.timedelta(weeks=12)).strftime('%Y-%m-%d')
+start_date_default = (datetime.datetime.today() - datetime.timedelta(weeks=34)).strftime('%Y-%m-%d')
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
-app.title = 'Portfolio Optimizer'
+app.title = 'SaaS Portfolio'
 
 debug_mode = False
 num_options = 5
@@ -37,7 +37,7 @@ num_options = 5
 header_card = html.Div(
     children=[
         html.P(children='📈💻', className='header-emoji'),
-        html.H1(children='Portfolio Optimizer', className='header-title'),
+        html.H1(children='SaaS Portfolio', className='header-title'),
         html.P(
             children='Optimize a given portfolio weightage using Sharpe Ratio',
             className='header-description'
@@ -47,11 +47,11 @@ header_card = html.Div(
 )
 
 current_portfolio = {
-    'TSLA': 1.4,
-    'AMC': 1,
-    'GME': 2,
+    'CRM': 1,
     'MSFT': 1,
-    'AAPL': 5
+    'INTU': 2,
+    'IGV': 1,
+    'CLOU': 1
 }
 
 
