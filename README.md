@@ -21,3 +21,4 @@ Sectors: Crypto Currencies (Ryan), FinTech Companies (Sam), SAAS (Dennis), Semi-
 * Alpaca API
 * Plotly & Plotly Dash
 * Bokeh
+* Dashboard resource: https://www.linkedin.com/pulse/random-builds-stock-monitoring-dashboard-python-learnings-jimmy-teoh/
